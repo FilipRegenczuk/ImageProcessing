@@ -1,6 +1,8 @@
+import cv2
 import numpy as np
-from matplotlib import pyplot as plt, cm
+from matplotlib import pyplot as plt
 
-random_img = np.random.rand(500, 1500)
-plt.imshow(random_img, cmap=cm.gray, interpolation="nearest")
+img = cv2.imread('./images/forest.jpg', cv2.IMREAD_COLOR)
+
+plt.imshow(img, cmap='gray'), plt.axis("off")
 plt.show()
