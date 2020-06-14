@@ -4,5 +4,5 @@ from matplotlib import pyplot as plt
 
 img = cv2.imread('./images/forest.jpg', cv2.IMREAD_COLOR)
 
-plt.imshow(img, cmap='gray'), plt.axis("off")
+plt.imshow(img), plt.axis("off")
 plt.show()
