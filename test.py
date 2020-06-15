@@ -2,6 +2,7 @@ import cv2
 import numpy as np
 from matplotlib import pyplot as plt
 
+
 img = cv2.imread('./images/rtg_chest.jpg', cv2.IMREAD_GRAYSCALE)
 
 # Wykrycie krawedzi
@@ -18,6 +19,8 @@ img = cv2.imread('./images/rtg_chest.jpg', cv2.IMREAD_GRAYSCALE)
 # img_binarized = cv2.adaptiveThreshold(img, max_output_value, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, neighborhood_size, subtract_from_mean)
 
 
+# Rozmycie Gaussowskie
+img_gaussian_blur = cv2.GaussianBlur(img, (25, 25), 0)
 
 
 plt.imshow(img, cmap="gray"), plt.axis("off")
@@ -30,5 +33,8 @@ plt.title("Orginal")
 # plt.figure()
 # plt.imshow(img_binarized, cmap="gray"), plt.axis("off")
 # plt.title("Binarized")
+
+plt.figure()
+plt.imshow(img_gaussian_blur, cmap="gray"), plt.axis("off")
 
 plt.show()
