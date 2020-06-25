@@ -14,7 +14,8 @@ def interface():
         print("Loaded file:", image_file)
         print("\nChoose option:")
         print("1. Enter an image")
-        print("2. Quit\n")
+        print("2. Print an image")
+        print("3. Quit\n")
 
         while True:
             try:
@@ -29,15 +30,26 @@ def interface():
 
                 if image_file.endswith(".jpg") or image_file.endswith(".png"):
                     img = cv2.imread(image_file, cv2.IMREAD_GRAYSCALE)
-                    plt.imshow(img, cmap="gray"), plt.axis("off")
-                    plt.title("Orginal")
-                    plt.show()
+                    
                 else:
                     print("File must be .jpg or .png type!")
                 
                 break
-
+            
             if choice == 2:
+
+                if image_file == None:
+                    print("Enter image first!")
+                    break
+                
+                else:
+                    plt.imshow(img, cmap="gray"), plt.axis("off")
+                    plt.title("Orginal")
+                    plt.show()
+                
+                break
+
+            if choice == 3:
                 sys.exit()
 
 
