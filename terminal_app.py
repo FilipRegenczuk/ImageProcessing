@@ -19,7 +19,8 @@ def interface():
         print("1. Enter an image")
         print("2. Print orginal image")
         print("3. Point transformation of image")
-        print("4. Quit\n")
+        print("4. Gamma correction of image")
+        print("5. Quit\n")
 
         while True:
             try:
@@ -28,8 +29,11 @@ def interface():
             except ValueError:
                 print("Valid option!")
 
+
         while True:
+
             if choice == 1:
+
                 image_file = input("Enter image name: ")
 
                 if image_file.endswith(".jpg") or image_file.endswith(".png"):
@@ -54,33 +58,52 @@ def interface():
 
             if choice == 3:
 
-                
                 if image_file == None:
                     print("Enter an image first!")
 
                 else:
-                    print("Enter constant: ")
-
                     # Print non edited image
                     plt.subplot(121)
                     plt.imshow(img, cmap="gray"), plt.axis("off")
                     plt.title("Orginal")
 
                     # Multiply img per const
+                    print("Enter constant: ")
                     c = int(input())
-                    img = c * img
+                    img_edited = c * img
 
                     # Print edited image
                     plt.subplot(122)
-                    plt.imshow(img, cmap="gray"), plt.axis("off")
+                    plt.imshow(img_edited, cmap="gray"), plt.axis("off")
                     plt.title("Image multiplied by c=" + str(c))
                     plt.show()
 
                 break
 
-                    
-
             if choice == 4:
+
+                if image_file == None:
+                    print("Enter an image first!")
+
+                else:
+                    # Print non edited image
+                    plt.subplot(121)
+                    plt.imshow(img, cmap="gray"), plt.axis("off")
+                    plt.title("Orginal")
+
+                    print("Enter constant: ")
+                    c = float(input())
+                    gamma_corrected = exposure.adjust_gamma(img, c)
+
+                     # Print edited image
+                    plt.subplot(122)
+                    plt.imshow(gamma_corrected, cmap="gray"), plt.axis("off")
+                    plt.title("Gamma corrected")
+                    plt.show()
+
+                break
+            
+            if choice == 10:
                 sys.exit()
 
 
