@@ -47,21 +47,53 @@ from skimage import exposure
 # plt.show()
 #########################
 
+# MEDIAN BLUR
+# img = cv2.imread('./images/cells_noise.jpg', cv2.IMREAD_GRAYSCALE)
 
-img = cv2.imread('./images/cells_noise.jpg', cv2.IMREAD_GRAYSCALE)
+# # Print non edited image
+# plt.subplot(121)
+# plt.imshow(img, cmap="gray"), plt.axis("off")
+# plt.title("Orginal")
+
+# # Print edited image
+# median_blur = cv2.medianBlur(img, 5)
+
+# plt.subplot(122)
+# plt.imshow(median_blur, cmap="gray"), plt.axis("off")
+# plt.title("Median blur")
+# plt.show()
+########################
+
+
+img = cv2.imread('./images/rtg_chest.jpg', cv2.IMREAD_GRAYSCALE)
 
 # Print non edited image
-plt.subplot(121)
+plt.subplot(131)
 plt.imshow(img, cmap="gray"), plt.axis("off")
 plt.title("Orginal")
 
 # Print edited image
-median_blur = cv2.medianBlur(img, 5)
+sobelX = cv2.Sobel(img, cv2.CV_64F, 1, 0, ksize=3)
+plt.subplot(132)
+plt.imshow(sobelX, cmap="gray"), plt.axis("off")
+plt.title("Sobel X")
 
-plt.subplot(122)
-plt.imshow(median_blur, cmap="gray"), plt.axis("off")
-plt.title("Median blur")
+sobelY = cv2.Sobel(img, cv2.CV_64F, 0, 1, ksize=3)
+plt.subplot(133)
+plt.imshow(sobelY, cmap="gray"), plt.axis("off")
+plt.title("Sobel Y")
+
 plt.show()
+
+
+laplacian = cv2.Laplacian(img, cv2.CV_64F)
+plt.subplot(224)
+plt.imshow(laplacian, cmap="gray"), plt.axis("off")
+plt.title("Laplacian")
+
+plt.show()
+
+
 
 # plt.figure()
 # plt.subplot(122)

@@ -18,9 +18,11 @@ def interface():
         print("\nChoose option:")
         print("1. Enter an image")
         print("2. Print orginal image")
-        print("3. Point transformation of image")
-        print("4. Gamma correction of image")
-        print("5. Gaussian blur of image")
+        print("3. Point transformation")
+        print("4. Gamma correction")
+        print("5. Gaussian blur")
+        print("6. Median blur")
+        print("7. Sobel filter")
         print("5. Quit\n")
 
         while True:
@@ -126,6 +128,52 @@ def interface():
                     plt.title("Gaussian blur - mask " + str(r) + " x " + str(r))
                     plt.show()
 
+                break
+
+            if choice == 6:
+
+                if image_file == None:
+                    print("Enter an image first!")
+
+                else:
+                    # Print non edited image
+                    plt.subplot(121)
+                    plt.imshow(img, cmap="gray"), plt.axis("off")
+                    plt.title("Orginal")
+
+                    # Print edited image
+                    median_blur = cv2.medianBlur(img, 5)
+
+                    plt.subplot(122)
+                    plt.imshow(median_blur, cmap="gray"), plt.axis("off")
+                    plt.title("Median blur")
+                    plt.show()
+
+                break
+
+            if choice == 7:
+                
+                if image_file == None:
+                    print("Enter an image first!")
+
+                else:
+                    # Print non edited image
+                    plt.subplot(131)
+                    plt.imshow(img, cmap="gray"), plt.axis("off")
+                    plt.title("Orginal")
+
+                    # Print edited image
+                    sobelX = cv2.Sobel(img, cv2.CV_64F, 1, 0, ksize=3)
+                    plt.subplot(132)
+                    plt.imshow(sobelX, cmap="gray"), plt.axis("off")
+                    plt.title("Sobel X")
+
+                    sobelY = cv2.Sobel(img, cv2.CV_64F, 0, 1, ksize=3)
+                    plt.subplot(133)
+                    plt.imshow(sobelY, cmap="gray"), plt.axis("off")
+                    plt.title("Sobel Y")
+                    plt.show()
+                
                 break
 
 
