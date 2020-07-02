@@ -14,8 +14,9 @@ def interface():
         print("Loaded file:", image_file)
         print("\nChoose option:")
         print("1. Enter an image")
-        print("2. Print an image")
-        print("3. Quit\n")
+        print("2. Print orginal image")
+        print("3. Point transformation of image")
+        print("4. Quit\n")
 
         while True:
             try:
@@ -39,8 +40,7 @@ def interface():
             if choice == 2:
 
                 if image_file == None:
-                    print("Enter image first!")
-                    break
+                    print("Enter an image first!")
                 
                 else:
                     plt.imshow(img, cmap="gray"), plt.axis("off")
@@ -50,6 +50,34 @@ def interface():
                 break
 
             if choice == 3:
+
+                
+                if image_file == None:
+                    print("Enter an image first!")
+
+                else:
+                    print("Enter constant: ")
+
+                    # Print non edited image
+                    plt.subplot(121)
+                    plt.imshow(img, cmap="gray"), plt.axis("off")
+                    plt.title("Orginal")
+
+                    # Multiply img per const
+                    c = int(input())
+                    img = c * img
+
+                    # Print edited image
+                    plt.subplot(122)
+                    plt.imshow(img, cmap="gray"), plt.axis("off")
+                    plt.title("Image multiplied by c=" + str(c))
+                    plt.show()
+
+                break
+
+                    
+
+            if choice == 4:
                 sys.exit()
 
 
