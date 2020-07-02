@@ -4,30 +4,64 @@ from matplotlib import pyplot as plt
 from skimage import exposure
 
 
-img = cv2.imread('./images/rtg_palm.jpg', cv2.IMREAD_GRAYSCALE)
-img = exposure.adjust_gamma(img, 10)
-equalized = cv2.equalizeHist(img)
+# HISTOGRAMS
+# img = cv2.imread('./images/rtg_palm.jpg', cv2.IMREAD_GRAYSCALE)
+# img = exposure.adjust_gamma(img, 10)
+# equalized = cv2.equalizeHist(img)
 
-plt.subplot(221)
+# plt.subplot(221)
+# plt.imshow(img, cmap="gray"), plt.axis("off")
+# plt.title("Orginal")
+
+# plt.subplot(222)
+# plt.hist(img.ravel(), 256, [0,256])
+# plt.title("Orginal - histogram")
+
+# plt.subplot(223)
+# plt.imshow(equalized, cmap="gray"), plt.axis("off")
+# plt.title("Equalized")
+
+# plt.subplot(224)
+# plt.hist(equalized.ravel(), 256, [0,256])
+# plt.title("Equalized - histogram")
+######################### 
+
+
+# GAUSSIAN BLUR
+# img = cv2.imread('./images/cells_noise.jpg', cv2.IMREAD_GRAYSCALE)
+
+# # Print non edited image
+# plt.subplot(121)
+# plt.imshow(img, cmap="gray"), plt.axis("off")
+# plt.title("Orginal")
+
+# # Print edited image
+# print("Enter mask size (R x R): ")
+# r = int(input("R = "))
+# ksize = (r,r)
+# gaussian_blur = cv2.GaussianBlur(img, ksize, 0)
+
+# plt.subplot(122)
+# plt.imshow(gaussian_blur, cmap="gray"), plt.axis("off")
+# plt.title("Gaussian blur - mask " + str(r) + " x " + str(r))
+# plt.show()
+#########################
+
+
+img = cv2.imread('./images/cells_noise.jpg', cv2.IMREAD_GRAYSCALE)
+
+# Print non edited image
+plt.subplot(121)
 plt.imshow(img, cmap="gray"), plt.axis("off")
 plt.title("Orginal")
 
-plt.subplot(222)
-plt.hist(img.ravel(), 256, [0,256])
-plt.title("Orginal - histogram")
+# Print edited image
+median_blur = cv2.medianBlur(img, 5)
 
-plt.subplot(223)
-plt.imshow(equalized, cmap="gray"), plt.axis("off")
-plt.title("Equalized")
-
-plt.subplot(224)
-plt.hist(equalized.ravel(), 256, [0,256])
-plt.title("Equalized - histogram")
-
-
-
-
-
+plt.subplot(122)
+plt.imshow(median_blur, cmap="gray"), plt.axis("off")
+plt.title("Median blur")
+plt.show()
 
 # plt.figure()
 # plt.subplot(122)

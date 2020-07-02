@@ -20,6 +20,7 @@ def interface():
         print("2. Print orginal image")
         print("3. Point transformation of image")
         print("4. Gamma correction of image")
+        print("5. Gaussian blur of image")
         print("5. Quit\n")
 
         while True:
@@ -91,20 +92,46 @@ def interface():
                     plt.imshow(img, cmap="gray"), plt.axis("off")
                     plt.title("Orginal")
 
+                    # Print edited image
                     print("Enter constant: ")
                     c = float(input())
                     gamma_corrected = exposure.adjust_gamma(img, c)
 
-                     # Print edited image
                     plt.subplot(122)
                     plt.imshow(gamma_corrected, cmap="gray"), plt.axis("off")
                     plt.title("Gamma corrected")
                     plt.show()
 
                 break
-            
+
+            if choice == 5:
+                
+                if image_file == None:
+                    print("Enter an image first!")
+
+                else:
+                    # Print non edited image
+                    plt.subplot(121)
+                    plt.imshow(img, cmap="gray"), plt.axis("off")
+                    plt.title("Orginal")
+
+                    # Print edited image
+                    print("Enter mask size (R x R): ")
+                    r = int(input("R = "))
+                    ksize = (r,r)
+                    gaussian_blur = cv2.GaussianBlur(img, ksize, 0)
+
+                    plt.subplot(122)
+                    plt.imshow(gaussian_blur, cmap="gray"), plt.axis("off")
+                    plt.title("Gaussian blur - mask " + str(r) + " x " + str(r))
+                    plt.show()
+
+                break
+
+
             if choice == 10:
                 sys.exit()
+
 
 
 interface()
