@@ -23,7 +23,8 @@ def interface():
         print("5. Gaussian blur")
         print("6. Median blur")
         print("7. Sobel filter")
-        print("5. Quit\n")
+        print("8. Laplacian filter")
+        print("9. Quit\n")
 
         while True:
             try:
@@ -175,9 +176,29 @@ def interface():
                     plt.show()
                 
                 break
+            
+            if choice == 8:
+                
+                if image_file == None:
+                    print("Enter an image first!")
+                
+                else:
+                    # Print non edited image
+                    plt.subplot(121)
+                    plt.imshow(img, cmap="gray"), plt.axis("off")
+                    plt.title("Orginal")
 
+                    # Print edited image
+                    laplacian = cv2.Laplacian(img, cv2.CV_64F)
 
-            if choice == 10:
+                    plt.subplot(122)
+                    plt.imshow(laplacian, cmap="gray"), plt.axis("off")
+                    plt.title("Laplacian")
+                    plt.show()
+                
+                break
+
+            if choice == 9:
                 sys.exit()
 
 
